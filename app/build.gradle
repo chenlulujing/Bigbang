@@ -14,37 +14,19 @@ def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
-def keystoreFilepath = ''
-def keystorePSW = ''
-def keystoreAlias = ''
-def keystoreAliasPSW = ''
-// default keystore file, PLZ config file path in local.properties
-def keyfile = file('s.keystore.temp')
-
-Properties properties = new Properties()
-// local.properties file in the root director
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-keystoreFilepath = properties.getProperty("keystore.path")
-
-if (keystoreFilepath) {
-    keystorePSW = properties.getProperty("keystore.password")
-    keystoreAlias = properties.getProperty("keystore.alias")
-    keystoreAliasPSW = properties.getProperty("keystore.alias_password")
-    keyfile = file(keystoreFilepath)
-}
 
 android {
     signingConfigs {
-        config  {
-            storeFile keyfile
-            storePassword keystorePSW
-            keyAlias keystoreAlias
-            keyPassword keystoreAliasPSW
+        config {
+            storeFile file("./bigbang.keystore")
+            storePassword "qm1801"
+            keyAlias "key0"
+            keyPassword "qm1801"
             println("====== signingConfigs.debug ======")
         }
     }
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -119,7 +101,7 @@ android {
         xiaomi {}
         meizu {}
         coolapk {}
-        xposed{
+        xposed {
             applicationId "com.forfan.bigbang.coolapk"
         }
         for_test {}
@@ -129,63 +111,63 @@ android {
         flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 
-    sourceSets{
-        wandoujia{
+    sourceSets {
+        wandoujia {
             java.srcDirs += ['src/Normal/java']
         }
 //        gfan{
 //            java.srcDirs += ['src/Normal/java']
 //        }
 
-        _360{
+        _360 {
             java.srcDirs += ['src/Normal/java']
         }
 
-        baidu{
+        baidu {
             java.srcDirs += ['src/Normal/java']
         }
 
-        taobao{
+        taobao {
             java.srcDirs += ['src/Normal/java']
         }
 
-        QQ{
+        QQ {
             java.srcDirs += ['src/Normal/java']
         }
 
-        google{
+        google {
             java.srcDirs += ['src/Normal/java']
         }
 
-        _91{
+        _91 {
             java.srcDirs += ['src/Normal/java']
         }
-        hiapk{
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        goapk{
+        hiapk {
             java.srcDirs += ['src/Normal/java']
         }
 
-        eoe{
+        goapk {
             java.srcDirs += ['src/Normal/java']
         }
-        xiaomi{
+
+        eoe {
             java.srcDirs += ['src/Normal/java']
         }
-        meizu{
+        xiaomi {
             java.srcDirs += ['src/Normal/java']
         }
-        for_test{
+        meizu {
             java.srcDirs += ['src/Normal/java']
         }
-        xposed{
+        for_test {
+            java.srcDirs += ['src/Normal/java']
+        }
+        xposed {
             resources.srcDirs += ['src/xposed/res']
             res.srcDirs += ['src/xposed/res']
             java.srcDirs += ['src/xposed/java']
         }
-        coolapk{
+        coolapk {
             resources.srcDirs += ['src/coolapk/res']
             res.srcDirs += ['src/coolapk/res']
             java.srcDirs += ['src/Normal/java']
@@ -244,8 +226,7 @@ dependencies {
 //    compile files('libs/utdid4all-1.1.5.3_proguard.jar')
 
 
-
-    compile(name:'feedbackSdk', ext:'aar')
+    compile(name: 'feedbackSdk', ext: 'aar')
     compile files('libs/securityguard-3.1.27.jar')
     compile files('libs/utdid4all-1.0.4.jar')
     compile files('libs/alisdk-ut-5.jar')
