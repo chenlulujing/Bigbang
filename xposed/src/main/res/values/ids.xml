@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="bigBang_$$" type="id"/>
-    <item name="bigBang_$" type="id"/>
-    <item name="bigBang_$_click" type="id"/>
+    <item name="bigBang_ss" type="id"/>
+    <item name="bigBang_s" type="id"/>
+    <item name="bigBang_s_click" type="id"/>
 </resources>

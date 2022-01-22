@@ -64,113 +64,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile.name.contains("release")) {
-                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                            // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
-                            def fileName = "BigBang_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                            output.outputFile = new File(outputFile.parent, fileName)
-                        }
-                    }
-                }
-            }
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable false
-        }
-    }
-    // 友盟多渠道打包
-    productFlavors {
-        wandoujia {}
-        _360 {}
-        baidu {}
-        taobao {}
-        QQ {}
-        google {
-
-        }
-//        _3G {}
-        _91 {}
-        hiapk {}
-//        gfan {}
-        goapk {}
-//        appChina {}
-        eoe {}
-        xiaomi {}
-        meizu {}
-        coolapk {}
-        xposed {
-            applicationId "com.forfan.bigbang.coolapk"
-        }
-        for_test {}
-    }
-
-    productFlavors.all { flavor ->
-        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-    }
-
-    sourceSets {
-        wandoujia {
-            java.srcDirs += ['src/Normal/java']
-        }
-//        gfan{
-//            java.srcDirs += ['src/Normal/java']
-//        }
-
-        _360 {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        baidu {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        taobao {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        QQ {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        google {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        _91 {
-            java.srcDirs += ['src/Normal/java']
-        }
-        hiapk {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        goapk {
-            java.srcDirs += ['src/Normal/java']
-        }
-
-        eoe {
-            java.srcDirs += ['src/Normal/java']
-        }
-        xiaomi {
-            java.srcDirs += ['src/Normal/java']
-        }
-        meizu {
-            java.srcDirs += ['src/Normal/java']
-        }
-        for_test {
-            java.srcDirs += ['src/Normal/java']
-        }
-        xposed {
-            resources.srcDirs += ['src/xposed/res']
-            res.srcDirs += ['src/xposed/res']
-            java.srcDirs += ['src/xposed/java']
-        }
-        coolapk {
-            resources.srcDirs += ['src/coolapk/res']
-            res.srcDirs += ['src/coolapk/res']
-            java.srcDirs += ['src/Normal/java']
         }
     }
 }
@@ -191,7 +87,7 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    googleCompile 'com.google.android.gms:play-services-vision:10.0.1'
+    api 'com.google.android.gms:play-services-vision:10.0.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile files('libs/umeng-onlineconfig_v1.0.0.jar')
     compile files('libs/com.umeng.fb.5.4.0.jar')
@@ -213,7 +109,7 @@ dependencies {
     compile files('libs/AndroidScreenCap.jar')
     compile project(':lib')
     compile files('libs/copy.jar')
-    xposedCompile project(':xposed')
+    api project(':xposed')
     provided 'de.robv.android.xposed:api:82'
     compile project(':commonjar')
     compile project(':colorpicker')

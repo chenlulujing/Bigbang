@@ -254,7 +254,7 @@ public class TouchEventHandler {
                         return false;
                     }
                     //这里如果触发单击则会影响到qq里的单击响应，估计也会影响其他应用的单击，应该要屏蔽掉设置了单击事件的view去除才行
-//                    Boolean isSetOnClick = (Boolean) mCurrentView.getTag(R.id.bigBang_$_click);
+//                    Boolean isSetOnClick = (Boolean) mCurrentView.getTag(R.id.bigBang_s_click);
 //                    if (isSetOnClick!=null && isSetOnClick){
 //                        return false;
 //                    }
@@ -331,7 +331,7 @@ public class TouchEventHandler {
             if(targetTextView != mCurrentView) {
                 mCurrentView=targetTextView;
                 if (targetTextView!=null) {
-                    targetTextView.setTag(R.id.bigBang_$$, currentTimeMillis);
+                    targetTextView.setTag(R.id.bigBang_ss, currentTimeMillis);
                 }
                 return false;
             }
@@ -368,12 +368,12 @@ public class TouchEventHandler {
                                 e.printStackTrace();
                             }
                             mCurrentView=null;
-                            targetTextView.setTag(R.id.bigBang_$$, currentTimeMillis);
+                            targetTextView.setTag(R.id.bigBang_ss, currentTimeMillis);
                             return handle;
                         }
                     }
                 }
-                targetTextView.setTag(R.id.bigBang_$$, currentTimeMillis);
+                targetTextView.setTag(R.id.bigBang_ss, currentTimeMillis);
                 // setClickTimeMillis(targetTextView, currentTimeMillis);
                 mCurrentView = targetTextView;
             }
@@ -411,7 +411,7 @@ public class TouchEventHandler {
                                 msg = msg.replace("%","\1");
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("forbigBang://?extra_text=" + msg));
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                targetTextView.setTag(R.id.bigBang_$$, 0);
+                                targetTextView.setTag(R.id.bigBang_ss, 0);
                                 context.startActivity(intent);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -419,7 +419,7 @@ public class TouchEventHandler {
                         }
                     }
                 }
-                targetTextView.setTag(R.id.bigBang_$$, currentTimeMillis);
+                targetTextView.setTag(R.id.bigBang_ss, currentTimeMillis);
                 // setClickTimeMillis(targetTextView, currentTimeMillis);
 
             }
@@ -497,7 +497,7 @@ public class TouchEventHandler {
     }
 
     public long getClickTimeMillis(View view) {
-        Object preClickTimeMillis = view.getTag(R.id.bigBang_$$);
+        Object preClickTimeMillis = view.getTag(R.id.bigBang_ss);
         if (preClickTimeMillis != null) {
             return (Long) preClickTimeMillis;
         }
@@ -505,7 +505,7 @@ public class TouchEventHandler {
     }
 
     public long getViewClickTimeMillis(View view) {
-        Object preClickTimeMillis = view.getTag(R.id.bigBang_$);
+        Object preClickTimeMillis = view.getTag(R.id.bigBang_s);
         if (preClickTimeMillis != null) {
             return (Long) preClickTimeMillis;
         }
@@ -513,11 +513,11 @@ public class TouchEventHandler {
     }
 
     public void setClickTimeMillis(View view, long timeMillis) {
-        view.setTag(R.id.bigBang_$$, timeMillis);
+        view.setTag(R.id.bigBang_ss, timeMillis);
     }
 
     public void setViewClickTimeMillis(View view, long timeMillis) {
-        view.setTag(R.id.bigBang_$, timeMillis);
+        view.setTag(R.id.bigBang_s, timeMillis);
     }
 
     private View getTargetView(View view, MotionEvent event) {

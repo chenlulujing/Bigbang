@@ -394,7 +394,7 @@ public class XposedBigBang implements IXposedHookLoadPackage {
             if (isKeyBoardOrLauncher(view.getContext(), packageName))
                 return;
 //            if (TextView.class.isInstance(view)){
-//                view.setTag(R.id.bigBang_$_click,true);
+//                view.setTag(R.id.bigBang_s_click,true);
                 View.OnClickListener newListener=new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
