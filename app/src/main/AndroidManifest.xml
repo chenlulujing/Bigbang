@@ -310,6 +310,17 @@
             android:finishOnTaskLaunch="true"
             android:process=":monitor"
             android:theme="@style/KeepAliveActivtyTheme" />
+        <activity
+            android:name="com.forfan.bigbang.customtext.CustomTextActivity"
+            android:excludeFromRecents="false"
+            android:configChanges="locale|orientation|keyboardHidden|screenSize"
+            android:label="点赞❤️+收藏❤️=学会❤️">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
