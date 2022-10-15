@@ -17,7 +17,6 @@ import com.forfan.bigbang.baseCard.DividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.animators.FadeInAnimator;
 
 /**
  * Created by penglu on 2016/5/8.
@@ -39,7 +38,6 @@ public class BaseRecyclerFragment extends BaseFragment {
             prepareCardView();
             newAdapter = new CardListAdapter(view.getContext(), false);
             newAdapter.setCardViews(cardViews);
-            cardList.setItemAnimator(new FadeInAnimator());
             cardList.setAdapter(newAdapter);
         }
         if ((ViewGroup)view.getParent()!=null) {

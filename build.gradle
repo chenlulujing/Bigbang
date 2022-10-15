@@ -1,15 +1,24 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        enviromentOut = true
+        isMacM1 = true
+    }
     repositories {
         maven {
-            url 'http://nexus.accessible.mobi:90/repository/accessible-nexus-central/'
+            if (enviromentOut) {
+                url 'http://nexusnas.accessible.mobi:90/repository/accessible-nexus-central/'
+            } else {
+                url 'http://192.168.31.115:8081/repository/accessible-nexus-central/'
+            }
         }
-
+        google()
+        mavenCentral()
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:4.2.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,8 +27,14 @@ buildscript {
 allprojects {
     repositories {
         maven {
-            url 'http://nexus.accessible.mobi:90/repository/accessible-nexus-central/'
+            if (enviromentOut) {
+                url 'http://nexusnas.accessible.mobi:90/repository/accessible-nexus-central/'
+            } else {
+                url 'http://192.168.31.115:8081/repository/accessible-nexus-central/'
+            }
         }
+        google()
+        mavenCentral()
     }
 }
 
